@@ -19,12 +19,14 @@ public class InputStreamReaderDemo {
 		Properties props = new Properties();
 		
 		try(InputStream in = new FileInputStream(filePath);
-			InputStreamReader reader = new InputStreamReader(in, Charset.forName("UTF-8"));
+			InputStreamReader reader = new InputStreamReader(in, Charset.forName("UTF-16"));
 			FileReader file = new FileReader(filePath)){
 			
 			props.load(file);
 			
-			props.entrySet().stream().forEach(e -> System.out.println(e));
+			props.entrySet().stream().forEach(e -> {
+				System.out.println(e.getKey() + "|" + e.getValue());	
+			});
 			
 		}catch(IOException e) {
 			e.printStackTrace();
